@@ -1,4 +1,5 @@
-# 🌋 Nusantara Disaster Simulator
+# 
+Nusantara Disaster Simulator
 
 [![Next.js](https://img.shields.io/badge/Next.js-15+-000000?style=flat&logo=nextdotjs)](https://nextjs.org/)
 [![React](https://img.shields.io/badge/React-19-61DAFB?style=flat&logo=react)](https://react.dev/)
