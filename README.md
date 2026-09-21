@@ -155,47 +155,6 @@ docker compose down
 
 ---
 
-## 📤 Prosedur Best Practice: Push ke GitHub
-
-Ikuti langkah-langkah berikut untuk mengunggah proyek ini ke repositori GitHub baru dengan aman dan rapi:
-
-### 1. Verifikasi `.gitignore` & Keamanan Kredensial
-Pastikan file sensitif dan build artifacts **tidak ikut ter-commit**:
-- `node_modules/`
-- `.next/`
-- `.env*.local`
-- `*.tsbuildinfo`
-
-### 2. Inisialisasi & Hubungkan ke Repositori GitHub
-
-Jika Anda menginisialisasi dari root direktori proyek:
-```bash
-# Inisialisasi Git pada root
-git init
-
-# Pastikan default branch adalah main
-git branch -M main
-
-# Tambahkan seluruh file ke staging area
-git add .
-
-# Buat initial commit dengan format semantic commit
-git commit -m "feat: initial release of Nusantara Disaster Simulator"
-
-# Hubungkan dengan remote repository GitHub Anda
-git remote add origin https://github.com/<your-username>/<repo-name>.git
-
-# Push ke branch main di GitHub
-git push -u origin main
-```
-
-### 3. Konfigurasi Repositori di GitHub (Rekomendasi)
-- **Repository Description**: Isi ringkasan proyek dan tambahkan tags/topics: `nextjs`, `threejs`, `react-three-fiber`, `disaster-simulation`, `indonesia`, `science-education`.
-- **Branch Protection Rule**: Aktifkan proteksi untuk branch `main` (require pull request review & pass CI status checks sebelum merge).
-- **Issue Templates & Discussions**: Aktifkan fitur Issues dan GitHub Discussions untuk kolaborasi komunitas.
-
----
-
 ## Panduan Kontribusi (Open for Contributors)
 
 Kami sangat menyambut kontribusi dari siapa saja, baik berupa penambahan fitur simulasi baru, penyempurnaan akurasi rumus ilmiah, perbaikan UI/UX, maupun dokumentasi!
