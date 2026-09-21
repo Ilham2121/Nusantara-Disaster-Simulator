@@ -44,3 +44,10 @@ app/.vercel
 # typescript cache
 *.tsbuildinfo
 app/*.tsbuildinfo
+
+# internal docs & plans
+PRD.md
+design.md
+Phase3_3DWorld_Plan.md
+Phase4_Integration_Plan.md
+SECURITY_AUDIT.md
