@@ -1,0 +1,13 @@
+Dockerfile*
+.dockerignore
+node_modules
+npm-debug.log*
+.next
+.git
+.gitignore
+.env*.local
+coverage
+test-results
+playwright-report
+*.tsbuildinfo
+README.md

@@ -1,0 +1,231 @@
+@import "tailwindcss";
+
+/* ===== DESIGN SYSTEM: Nusantara Disaster Simulator ===== */
+/* Strictly adheres to design.md (Scientific Futurism) & antislop guidelines */
+
+:root {
+  /* --- 4. Color System: Foundation --- */
+  --background: #0B0F14;
+  --secondary: #111820;
+  --surface: #18212B;
+  --surface-elevated: #202B36;
+  --border: #202B36;
+  --border-subtle: #161F28;
+  --border-focus: #57C7D9;
+
+  /* --- Text Hierarchy --- */
+  --text-primary: #F2F5F7;
+  --text-secondary: #A9B3BD;
+  --text-muted: #6F7B86;
+
+  /* --- Single Primary Accent --- */
+  --accent: #57C7D9;
+  --accent-hover: #46B6C8;
+  --accent-subtle: rgba(87, 199, 217, 0.12);
+
+  /* --- 5. Semantic Disaster Colors --- */
+  --disaster-earthquake: #D6A84F;
+  --disaster-earthquake-subtle: rgba(214, 168, 79, 0.12);
+  --disaster-volcano: #E8754A;
+  --disaster-volcano-subtle: rgba(232, 117, 74, 0.12);
+  --state-danger: #D95C5C;
+  --state-success: #63B98A;
+  --state-info: #57C7D9;
+
+  /* Legacy mappings to preserve compatibility with existing simulation components */
+  --foreground: var(--text-primary);
+  --surface-hover: #1E2934;
+  --volcanic-orange: var(--disaster-volcano);
+  --volcanic-orange-glow: #F28C63;
+  --seismic-blue: var(--disaster-earthquake);
+  --seismic-blue-glow: #E5BE6E;
+  --terrain-green: var(--state-success);
+  --terrain-green-muted: #4B966E;
+  --danger-red: var(--state-danger);
+  --warning-amber: var(--disaster-earthquake);
+  --ash-gray: var(--text-secondary);
+
+  /* --- 10. Border Radius Hierarchy --- */
+  --radius-button: 10px;
+  --radius-input: 10px;
+  --radius-card: 14px;
+  --radius-surface: 18px;
+
+  /* --- 11. Subtle Elevation Shadows (No neon glows) --- */
+  --shadow-subtle: 0 2px 8px rgba(0, 0, 0, 0.2);
+  --shadow-elevation: 0 4px 20px rgba(0, 0, 0, 0.35);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-secondary: var(--secondary);
+  --color-surface: var(--surface);
+  --color-surface-hover: var(--surface-hover);
+  --color-surface-elevated: var(--surface-elevated);
+  --color-border: var(--border);
+  --color-border-subtle: var(--border-subtle);
+
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+
+  --color-foreground: var(--foreground);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+
+  --color-earthquake: var(--disaster-earthquake);
+  --color-volcano: var(--disaster-volcano);
+  --color-volcanic: var(--disaster-volcano);
+  --color-volcanic-glow: var(--volcanic-orange-glow);
+  --color-seismic: var(--disaster-earthquake);
+  --color-seismic-glow: var(--seismic-blue-glow);
+  --color-terrain: var(--terrain-green);
+  --color-terrain-muted: var(--terrain-green-muted);
+  --color-danger: var(--danger-red);
+  --color-warning: var(--warning-amber);
+  --color-ash: var(--text-secondary);
+
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+  --font-display: var(--font-space-grotesk), system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), monospace;
+
+  /* Controlled transitions (35. Transition Timing: 150-250ms) */
+  --animate-fade-in: fade-in 0.2s ease-out;
+  --animate-slide-up: slide-up 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  --animate-slide-down: slide-down 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ===== KEYFRAMES ===== */
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slide-down {
+  from { opacity: 0; transform: translateY(-12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes ticker-slide {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.animate-ticker {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+  animation: ticker-slide 50s linear infinite;
+}
+
+.animate-ticker:hover {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-ticker {
+    animation: none !important;
+    transform: none !important;
+  }
+}
+
+/* ===== BASE STYLES ===== */
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--background);
+}
+
+body {
+  background-color: var(--background);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, .font-display {
+  font-family: var(--font-display);
+}
+
+::selection {
+  background: var(--accent-subtle);
+  color: var(--accent);
+}
+
+/* --- 37. Focus State (Accessible 2px outline) --- */
+:focus-visible {
+  outline: 2px solid var(--border-focus);
+  outline-offset: 2px;
+}
+
+/* ===== 12. SURFACE SYSTEM ===== */
+
+.surface-open {
+  background: transparent;
+}
+
+.surface-subtle {
+  background-color: var(--secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-card);
+}
+
+.surface-elevated {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-subtle);
+}
+
+/* ===== TELEMETRY & OBSERVATORY UTILITIES ===== */
+
+.telemetry-grid {
+  background-image: 
+    linear-gradient(to right, rgba(32, 43, 54, 0.35) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(32, 43, 54, 0.35) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* Custom technical scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
+
+/* 3D Canvas styles */
+.simulation-canvas canvas {
+  outline: none !important;
+  cursor: grab;
+}
+
+.simulation-canvas canvas:active {
+  cursor: grabbing;
+}

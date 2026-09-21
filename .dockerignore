@@ -1,0 +1,10 @@
+**/node_modules
+**/.next
+**/.git
+**/.gitignore
+**/.env*.local
+**/coverage
+**/test-results
+**/playwright-report
+**/*.tsbuildinfo
+*.md
